@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean World</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        .section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero {
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+        }
+        .title {
+            font-size: 5rem;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+        }
+        .subtitle {
+            font-size: 2rem;
+            text-align: center;
+            opacity: 0;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        #problem {
+            background-color: #FF5722;
+        }
+        #solution {
+            background-color: #2196F3;
+        }
+        .icon {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+        }
+        .cta-button {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            opacity: 0;
+        }
+        .cta-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="hero" class="section">
+        <div>
+            <h1 class="title">Clean World</h1>
+            <p class="subtitle">Revolutionizing global cleanliness</p>
+        </div>
+    </div>
+    <div id="problem" class="section">
+        <div>
+            <div class="icon">🌍</div>
+            <h2 class="subtitle">The world needs cleaning</h2>
+        </div>
+    </div>
+    <div id="solution" class="section">
+        <div>
+            <div class="icon">🧹</div>
+            <h2 class="subtitle">AI-powered cleaning platform</h2>
+        </div>
+    </div>
+    <div id="cta" class="section">
+        <button class="cta-button">Join the Mission</button>
+    </div>
+
+    <script>
+        gsap.to(".title", {duration: 1, opacity: 1, y: -50, ease: "power3.out"});
+        gsap.to(".subtitle", {duration: 1, opacity: 1, y: -30, ease: "power3.out", delay: 0.5});
+        gsap.to(".cta-button", {duration: 1, opacity: 1, y: -20, ease: "power3.out", delay: 1});
+
+        function createCircles(container, count) {
+            for (let i = 0; i < count; i++) {
+                let circle = document.createElement('div');
+                circle.classList.add('circle');
+                circle.style.width = Math.random() * 100 + 50 + 'px';
+                circle.style.height = circle.style.width;
+                circle.style.left = Math.random() * 100 + 'vw';
+                circle.style.top = Math.random() * 100 + 'vh';
+                circle.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.3)`;
+                container.appendChild(circle);
+
+                gsap.to(circle, {
+                    x: Math.random() * 200 - 100,
+                    y: Math.random() * 200 - 100,
+                    duration: Math.random() * 10 + 5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
+        }
+
+        createCircles(document.getElementById('hero'), 20);
+        createCircles(document.getElementById('problem'), 15);
+        createCircles(document.getElementById('solution'), 15);
+
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            alert('Join us in cleaning the world! Contact: info@cleanworld.com');
+        });
+
+        const sections = document.querySelectorAll('.section');
+        let currentSection = 0;
+
+        window.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0 && currentSection < sections.length - 1) {
+                currentSection++;
+            } else if (e.deltaY < 0 && currentSection > 0) {
+                currentSection--;
+            }
+            sections[currentSection].scrollIntoView({behavior: 'smooth'});
+        });
+    </script>
+</body>
+</html>
