@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparshamitra - Revolutionizing Global Cleanliness</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FF5722;
+            --text-color: #ffffff;
+            --bg-color: #1a1a1a;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        #hero {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            text-align: center;
+            opacity: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            filter: blur(5px);
+        }
+
+        #problem { background-color: var(--accent-color); }
+        #solution { background-color: var(--secondary-color); }
+
+        .icon {
+            font-size: clamp(4rem, 12vw, 8rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            background-color: #333;
+            color: var(--text-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <div id="hero" class="section">
+        <div>
+            <h1 class="title">Sparshamitra</h1>
+            <p class="subtitle">Revolutionizing global cleanliness</p>
+        </div>
+    </div>
+    <div id="problem" class="section">
+        <div>
+            <div class="icon"><i class="fas fa-globe-americas"></i></div>
+            <h2 class="subtitle">The world needs cleaning</h2>
+        </div>
+    </div>
+    <div id="solution" class="section">
+        <div>
+            <div class="icon"><i class="fas fa-broom"></i></div>
+            <h2 class="subtitle">Next generation cleaning platform</h2>
+        </div>
+    </div>
+    <div id="cta" class="section">
+        <button class="cta-button">Join the Mission</button>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 Sparshamitra. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(".title", {duration: 1, opacity: 1, y: -50, ease: "power3.out"});
+        gsap.to(".subtitle", {duration: 1, opacity: 1, y: -30, ease: "power3.out", delay: 0.5});
+        gsap.to(".cta-button", {duration: 1, opacity: 1, y: -20, ease: "power3.out", delay: 1});
+
+        function createCircles(container, count) {
+            for (let i = 0; i < count; i++) {
+                let circle = document.createElement('div');
+                circle.classList.add('circle');
+                circle.style.width = Math.random() * 100 + 50 + 'px';
+                circle.style.height = circle.style.width;
+                circle.style.left = Math.random() * 100 + 'vw';
+                circle.style.top = Math.random() * 100 + 'vh';
+                circle.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.3)`;
+                container.appendChild(circle);
+
+                gsap.to(circle, {
+                    x: Math.random() * 200 - 100,
+                    y: Math.random() * 200 - 100,
+                    duration: Math.random() * 10 + 5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
+        }
+
+        createCircles(document.getElementById('hero'), 20);
+        createCircles(document.getElementById('problem'), 15);
+        createCircles(document.getElementById('solution'), 15);
+
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            alert('Join us in cleaning the world! Contact: info@sparshamitra.com');
+        });
+
+        gsap.utils.toArray('.section').forEach((section, index) => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top center',
+                end: 'bottom center',
+                onEnter: () => {
+                    gsap.to(section, {opacity: 1, y: 0, duration: 0.5});
+                },
+                onLeaveBack: () => {
+                    gsap.to(section, {opacity: 0.5, y: 50, duration: 0.5});
+                }
+            });
+        });
+
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        ScrollTrigger.create({
+            start: 'top top',
+            end: 'bottom bottom',
+            onUpdate: (self) => {
+                scrollIndicator.style.opacity = 1 - self.progress;
+            }
+        });
+    </script>
+</body>
+</html>
